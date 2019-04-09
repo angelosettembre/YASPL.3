@@ -1,0 +1,230 @@
+head
+
+double sommagrande, sommapiccola;
+int i, scelta;
+int sceltaOP;
+int xInt, yInt, risultatoInt;
+double x, y, risultato;
+bool grande, continua;
+int scelta_cont;
+
+def moltiplicazione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = 0;
+	int index = 0;
+	
+	while(index < y) do {
+		index = index + 1;
+		risultato = risultato + x;
+	}
+	if ((x*y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def moltiplicazioneInt(in int x, in int y, out int res, out bool grande)
+{
+	int risultato = 0;
+	int index = 0;
+	
+	while(index < y) do {
+		index = index + 1;
+		risultato = risultato + x;
+	}
+	if ((x*y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def somma(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x+y;
+	if ((x+y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def sommaInt(in int x, in int y, out int res, out bool grande)
+{
+	int risultato = x+y;
+	if ((x+y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def sottrazione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x-y;
+	if ((x-y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def sottrazioneInt(in int x, in int y, out int res, out bool grande)
+{
+	int risultato = x-y;
+	if ((x-y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def divisione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x/y;
+	if ((x/y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def divisioneInt(in int x, in int y, out int res, out bool grande)
+{
+	int risultato = x/y;
+	if ((x/y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+start 
+
+sommagrande = 0;
+sommapiccola = 0;
+
+"Questo programma CALCOLATRICE permette di svolgere una serie di addizioni (1), sottrazioni (2), moltiplicazioni (3), divisioni (4) \n" ->;
+"Accumulando i risultati > 100 in sommagrande e quelli < 100 in sommapiccola \n" ->;
+
+continua = false;
+while (not(continua)) do {
+	"Scegli una delle 4 operazioni (1), (2), (3), (4) \n" ->;
+	scelta <-;
+	
+	if(scelta == 1 or scelta == 2 or scelta == 3 or scelta == 4) then {
+		if(scelta == 1) then{
+			"Vuoi lavorare con interi o double? 0 per interi 1 per double "->;
+			sceltaOP<-;
+			if(sceltaOP == 0) then {
+				"Addizione : inserisci due numeri positivi \n" ->;
+				xInt, yInt <-;
+				
+				sommaInt(xInt, yInt, risultatoInt, grande);
+				"Risultato somma: \n", risultatoInt->;
+			} else {
+				"Addizione : inserisci due numeri positivi \n" ->;
+				x, y <-;
+				
+				somma(x, y, risultato, grande);
+				"Risultato somma: \n", risultato->;
+			}
+		} 
+		if(scelta == 2) then {
+			"Vuoi lavorare con interi o double? 0 per interi 1 per double "->;
+			sceltaOP<-;
+			if(sceltaOP == 0) then {
+				"Sottrazione : inserisci due numeri positivi \n" ->;
+				xInt, yInt <-;
+				
+				sottrazioneInt(xInt, yInt, risultatoInt, grande);
+				"Risultato sottrazione: \n", risultatoInt ->;
+			} else {
+				"Sottrazione : inserisci due numeri positivi \n" ->;
+				x, y <-;
+				
+				sottrazione(x, y, risultato, grande);
+				"Risultato sottrazione: \n", risultato ->;
+			}
+		}
+		if(scelta == 3) then {
+			"Vuoi lavorare con interi o double? 0 per interi 1 per double "->;
+			sceltaOP<-;
+			if(sceltaOP == 0) then {
+				"Moltiplicazione : inserisci due numeri positivi \n" ->;
+				xInt, yInt <-;
+				
+				moltiplicazioneInt(xInt, yInt ,risultatoInt, grande);
+				"Risultato moltiplicazione: \n", risultatoInt ->;
+			} else {
+				"Moltiplicazione : inserisci due numeri positivi \n" ->;
+				x, y <-;
+				
+				moltiplicazione(x, y ,risultato, grande);
+				"Risultato moltiplicazione: \n", risultato ->;
+			}
+		} 
+		if(scelta == 4) then {
+			"Vuoi lavorare con interi o double? 0 per interi 1 per double "->;
+			sceltaOP<-;
+			if(sceltaOP == 0) then {
+				"Divisione : inserisci due numeri positivi \n" ->;
+				xInt, yInt <-;
+				
+				divisioneInt(xInt, yInt, risultatoInt, grande);
+				"Risultato divisione: \n", risultatoInt ->;
+			} else {
+				"Divisione : inserisci due numeri positivi \n" ->;
+				x, y <-;
+				
+				divisione(x, y, risultato, grande);
+				"Risultato divisione: \n", risultato ->;
+			}
+		}
+	} else {
+		continua = true;
+	}
+	
+	if(not continua) then {
+		if(grande) then { 
+			sommagrande = sommagrande + risultato;
+		}else{
+			sommapiccola = sommapiccola + risultato;
+		}
+		
+		"Vuoi continuare? si --> (0) no --> (1) \n" ->;
+		scelta_cont<-;
+		if(scelta_cont == 1) then {
+			continua = true;
+		} else {
+			if(scelta_cont == 0) then {
+				continua = false;
+				scelta = 0;
+			} else {
+				continua = true;
+			}
+		}
+	}	
+}
+
+"Valore di sommagrande: \n" , sommagrande, " \n" ->;
+"Valore di sommapiccola: \n" , sommapiccola, " \n" ->;
+"ciao","alla prossima"->;
+'!'," \n"->;

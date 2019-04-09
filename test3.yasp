@@ -1,0 +1,24 @@
+head
+int x;
+int y;
+int w;
+double s;
+bool grande, grande1;
+
+def setVal(in int x, in int y, out int w){
+	w = x+y+1;
+}
+
+start
+
+grande1 = x>3 and not grande == true;
+if(s==w) then {
+}
+x,y<-;
+setVal(x,y,w);
+w->;
+
+if(not grande==false) then {
+}
+
+grande1 = 'd'=='d';

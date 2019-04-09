@@ -1,0 +1,79 @@
+head
+int x=1,y;
+int u = 1*5/2;
+double s=-12.4+1,v;
+bool bol=not false;
+bool as = false;
+
+def sum(in int b,out double s,out double m,inout int o){
+    double u = 13.1;
+    double x;
+    int pippo;
+    1+pippo->;
+    
+    if(x<1)then{
+        x=2;
+    }
+    if(not bol and not (u<13))then{
+        u = 12.1;
+        x=1;
+    }else{
+        if(x>1 and u<10.0)then{
+        u = 11.1;
+        }
+    }
+    while(x>1)do{
+    x=1;
+    if(x>1 and u<10.0)then{
+        u = 11.1;
+    }
+    }
+    
+    x->;
+    x<-;
+    
+    s = u;
+    m = x;
+    o = o+1;
+    "valore",o->;
+    "inserisci:"->;
+    o<-;
+    "valore dopo",o->;
+    //s,"valore",1.3->;
+    "valore",1.3->;
+    x = pippo;
+}
+
+def mul(in int e){
+    as->;
+
+}
+
+
+string g="dad",e="dasdas",w;
+char q='C',c;
+
+start
+x=30;
+if(x>1 and y==0)then{
+    x = 2+1/1;
+}
+if (not -(x+1)>5 and not x>1)then{
+    x = 2+1*1;
+}
+x = -15+1;
+bol = not -(x+1)>-(1.1+1);
+
+sum(x,s,v,x);
+mul(x);
+if(not -(x+1)>1)then{
+    x = -2+1-1;
+}
+
+"Hello World!",g,x,x>1,1.1+x,y,s,q,x>1->;
+x,y,"Ciao"->;
+"Inserisci valore :"->;
+x<-;
+x,y->;
+'c',"adsasda \n"->;
+x = (x+1)/2;

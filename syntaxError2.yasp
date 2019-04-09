@@ -1,0 +1,7 @@
+head
+int y;
+def incremento(in int x, out int w){
+	w = x+1;
+}
+start
+incremento(,);

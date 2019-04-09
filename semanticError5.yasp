@@ -1,0 +1,11 @@
+head
+
+int x,y;
+int risultato;
+
+def somma(in int x, in int y, out int ris){
+	ris = x + y;
+}
+
+start	
+somma(2.4,y,risultato);				//TIPO DI PARAMETRO NON CORRETTO

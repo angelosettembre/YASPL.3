@@ -1,0 +1,181 @@
+head
+
+double sommagrande, sommapiccola;
+int i, scelta;
+double x, y, risultato;
+bool grande, continua;
+int scelta_cont;
+int risFibonacci;
+
+def moltiplicazione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = 0;
+	int index = 0;
+	
+	while(index < y) do {
+		index = index + 1;
+		risultato = risultato + x;
+	}
+	if ((x*y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def somma(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x+y;
+	if ((x+y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def sottrazione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x-y;
+	if ((x-y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def divisione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x/y;
+	if ((x/y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def potenza(in double x, in double y, out double res){
+	double risultato = 1;
+	int index = 0;
+	
+	while(index < y) do {
+		risultato = risultato * x;
+		index = index + 1;
+	}
+	res = risultato;
+}
+
+def fibonacci(in int n, out int ris){
+	int f1 = 1;
+	int f0 = 0;
+	int fn = n;
+	int i = 2;
+	
+	while (i <= n) do {
+		fn = f1 + f0;
+		f0 = f1;
+		f1 = fn;
+		i = i+1;
+	}
+	
+	ris = fn;
+}
+
+
+start 
+
+sommagrande = 0;
+sommapiccola = 0;
+
+"Questo programma CALCOLATRICE permette di svolgere una serie di addizioni (1), sottrazioni (2), moltiplicazioni (3), divisioni (4), elevamento a potenza (5), successione di fibonacci (6) \n" ->;
+"Accumulando i risultati > 100 in sommagrande e quelli < 100 in sommapiccola \n" ->;
+
+continua = false;
+while (not(continua)) do {
+	"Scegli una delle 6 operazioni (1), (2), (3), (4), (5), (6) \n" ->;
+	scelta <-;
+	
+	if(scelta == 1 or scelta == 2 or scelta == 3 or scelta == 4 or scelta == 5 or scelta == 6) then {
+		if(scelta == 1) then{
+			"Addizione : inserisci due numeri positivi \n" ->;
+			x, y <-;
+			
+			somma(x, y, risultato, grande);
+			"Risultato somma: \n", risultato->;
+		} 
+		if(scelta == 2) then {
+			"Sottrazione : inserisci due numeri positivi \n" ->;
+			x, y <-;
+			
+			sottrazione(x, y, risultato, grande);
+			"Risultato sottrazione: \n", risultato ->;
+		}
+		if(scelta == 3) then {
+			"Moltiplicazione : inserisci due numeri positivi \n" ->;
+			x, y <-;
+			
+			moltiplicazione(x, y ,risultato, grande);
+			"Risultato moltiplicazione: \n", risultato ->;
+		} 
+		if(scelta == 4) then {
+			"Divisione : inserisci due numeri positivi \n" ->;
+			x, y <-;
+			
+			divisione(x, y, risultato, grande);
+			"Risultato divisione: \n", risultato ->;
+		}	
+		if(scelta == 5) then {
+			"Elevamento a potenza : inserisci due numeri positivi \n" ->;
+			x, y <-;
+			
+			potenza(x, y, risultato);
+			"Risultato potenza : \n", risultato ->;
+		} 
+		if(scelta == 6) then {
+			"Successione di Fibonacci: inserisci un numero \n" ->;
+			x <-;
+			i = 0;
+						
+			while(i <= x) do {
+				fibonacci(i, risFibonacci);
+				"Risultato successione di Fibonacci : ", risFibonacci->;
+				i = i + 1;
+			}
+		}
+	} else {
+		continua = true;
+	}
+	
+	if(not continua) then {
+		if(grande) then { 
+			sommagrande = sommagrande + risultato;
+		}else{
+			sommapiccola = sommapiccola + risultato;
+		}
+		
+		"Vuoi continuare? si --> (0) no --> (1) \n" ->;
+		scelta_cont<-;
+		if(scelta_cont == 1) then {
+			continua = true;
+		} else {
+			if(scelta_cont == 0) then {
+				continua = false;
+				scelta = 0;
+			} else {
+				continua = true;
+			}
+		}
+	}	
+}
+
+"Valore di sommagrande: \n" , sommagrande, " \n" ->;
+"Valore di sommapiccola: \n" , sommapiccola, " \n" ->;
+"ciao","alla prossima"->;
+'!',"\n "->;

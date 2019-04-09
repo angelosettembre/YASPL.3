@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ProgramOP>
+  <VAR_DECL>
+    <TYPE type="double"/>
+    <VarInitOP>
+      <IDENTIFIER value="sommagrande"/>
+    </VarInitOP>
+    <VarInitOP>
+      <IDENTIFIER value="sommapiccola"/>
+    </VarInitOP>
+  </VAR_DECL>
+  <VAR_DECL>
+    <TYPE type="int"/>
+    <VarInitOP>
+      <IDENTIFIER value="i"/>
+    </VarInitOP>
+    <VarInitOP>
+      <IDENTIFIER value="scelta"/>
+    </VarInitOP>
+  </VAR_DECL>
+  <VAR_DECL>
+    <TYPE type="double"/>
+    <VarInitOP>
+      <IDENTIFIER value="x"/>
+    </VarInitOP>
+    <VarInitOP>
+      <IDENTIFIER value="y"/>
+    </VarInitOP>
+    <VarInitOP>
+      <IDENTIFIER value="risultato"/>
+    </VarInitOP>
+  </VAR_DECL>
+  <VAR_DECL>
+    <TYPE type="bool"/>
+    <VarInitOP>
+      <IDENTIFIER value="grande"/>
+    </VarInitOP>
+    <VarInitOP>
+      <IDENTIFIER value="continua"/>
+    </VarInitOP>
+  </VAR_DECL>
+  <VAR_DECL>
+    <TYPE type="int"/>
+    <VarInitOP>
+      <IDENTIFIER value="scelta_cont"/>
+    </VarInitOP>
+  </VAR_DECL>
+  <VAR_DECL>
+    <TYPE type="int"/>
+    <VarInitOP>
+      <IDENTIFIER value="risFibonacci"/>
+    </VarInitOP>
+  </VAR_DECL>
+  <DEF_DECL>
+    <IDENTIFIER value="moltiplicazione"/>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="x"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="y"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="res"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="bool"/>
+      <IDENTIFIER value="grande"/>
+    </PAR_DECL>
+    <Body>
+      <VAR_DECL>
+        <TYPE type="double"/>
+        <VarInitOP>
+          <IDENTIFIER value="risultato"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="0"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <VAR_DECL>
+        <TYPE type="int"/>
+        <VarInitOP>
+          <IDENTIFIER value="index"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="0"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <WHILE_OP>
+        <LTOp type="bool">
+          <IDENTIFIER value="index"/>
+          <IDENTIFIER value="y"/>
+        </LTOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="index"/>
+            <AddOP type="int">
+              <IDENTIFIER value="index"/>
+              <INT_CONST value="1"/>
+            </AddOP>
+          </ASSIGN_OP>
+          <ASSIGN_OP>
+            <IDENTIFIER value="risultato"/>
+            <AddOP type="double">
+              <IDENTIFIER value="risultato"/>
+              <IDENTIFIER value="x"/>
+            </AddOP>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </WHILE_OP>
+      <IF_THEN_ELSE_OP>
+        <GEOp type="bool">
+          <MulOP type="double">
+            <IDENTIFIER value="x"/>
+            <IDENTIFIER value="y"/>
+          </MulOP>
+          <INT_CONST value="100"/>
+        </GEOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <TRUE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <FALSE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </IF_THEN_ELSE_OP>
+      <ASSIGN_OP>
+        <IDENTIFIER value="res"/>
+        <IDENTIFIER value="risultato"/>
+      </ASSIGN_OP>
+    </Body>
+  </DEF_DECL>
+  <DEF_DECL>
+    <IDENTIFIER value="somma"/>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="x"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="y"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="res"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="bool"/>
+      <IDENTIFIER value="grande"/>
+    </PAR_DECL>
+    <Body>
+      <VAR_DECL>
+        <TYPE type="double"/>
+        <VarInitOP>
+          <IDENTIFIER value="risultato"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <AddOP type="double">
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </AddOP>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <IF_THEN_ELSE_OP>
+        <GEOp type="bool">
+          <AddOP type="double">
+            <IDENTIFIER value="x"/>
+            <IDENTIFIER value="y"/>
+          </AddOP>
+          <INT_CONST value="100"/>
+        </GEOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <TRUE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <FALSE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </IF_THEN_ELSE_OP>
+      <ASSIGN_OP>
+        <IDENTIFIER value="res"/>
+        <IDENTIFIER value="risultato"/>
+      </ASSIGN_OP>
+    </Body>
+  </DEF_DECL>
+  <DEF_DECL>
+    <IDENTIFIER value="sottrazione"/>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="x"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="y"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="res"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="bool"/>
+      <IDENTIFIER value="grande"/>
+    </PAR_DECL>
+    <Body>
+      <VAR_DECL>
+        <TYPE type="double"/>
+        <VarInitOP>
+          <IDENTIFIER value="risultato"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <DiffOP type="double">
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </DiffOP>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <IF_THEN_ELSE_OP>
+        <GEOp type="bool">
+          <DiffOP type="double">
+            <IDENTIFIER value="x"/>
+            <IDENTIFIER value="y"/>
+          </DiffOP>
+          <INT_CONST value="100"/>
+        </GEOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <TRUE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <FALSE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </IF_THEN_ELSE_OP>
+      <ASSIGN_OP>
+        <IDENTIFIER value="res"/>
+        <IDENTIFIER value="risultato"/>
+      </ASSIGN_OP>
+    </Body>
+  </DEF_DECL>
+  <DEF_DECL>
+    <IDENTIFIER value="divisione"/>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="x"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="y"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="res"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="bool"/>
+      <IDENTIFIER value="grande"/>
+    </PAR_DECL>
+    <Body>
+      <VAR_DECL>
+        <TYPE type="double"/>
+        <VarInitOP>
+          <IDENTIFIER value="risultato"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <DivOP type="double">
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </DivOP>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <IF_THEN_ELSE_OP>
+        <GEOp type="bool">
+          <DivOP type="double">
+            <IDENTIFIER value="x"/>
+            <IDENTIFIER value="y"/>
+          </DivOP>
+          <INT_CONST value="100"/>
+        </GEOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <TRUE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="grande"/>
+            <FALSE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </IF_THEN_ELSE_OP>
+      <ASSIGN_OP>
+        <IDENTIFIER value="res"/>
+        <IDENTIFIER value="risultato"/>
+      </ASSIGN_OP>
+    </Body>
+  </DEF_DECL>
+  <DEF_DECL>
+    <IDENTIFIER value="potenza"/>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="x"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="y"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="double"/>
+      <IDENTIFIER value="res"/>
+    </PAR_DECL>
+    <Body>
+      <VAR_DECL>
+        <TYPE type="double"/>
+        <VarInitOP>
+          <IDENTIFIER value="risultato"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="1"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <VAR_DECL>
+        <TYPE type="int"/>
+        <VarInitOP>
+          <IDENTIFIER value="index"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="0"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <WHILE_OP>
+        <LTOp type="bool">
+          <IDENTIFIER value="index"/>
+          <IDENTIFIER value="y"/>
+        </LTOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="risultato"/>
+            <MulOP type="double">
+              <IDENTIFIER value="risultato"/>
+              <IDENTIFIER value="x"/>
+            </MulOP>
+          </ASSIGN_OP>
+          <ASSIGN_OP>
+            <IDENTIFIER value="index"/>
+            <AddOP type="int">
+              <IDENTIFIER value="index"/>
+              <INT_CONST value="1"/>
+            </AddOP>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </WHILE_OP>
+      <ASSIGN_OP>
+        <IDENTIFIER value="res"/>
+        <IDENTIFIER value="risultato"/>
+      </ASSIGN_OP>
+    </Body>
+  </DEF_DECL>
+  <DEF_DECL>
+    <IDENTIFIER value="fibonacci"/>
+    <PAR_DECL>
+      <PAR_TYPE type="in"/>
+      <TYPE type="int"/>
+      <IDENTIFIER value="n"/>
+    </PAR_DECL>
+    <PAR_DECL>
+      <PAR_TYPE type="out"/>
+      <TYPE type="int"/>
+      <IDENTIFIER value="ris"/>
+    </PAR_DECL>
+    <Body>
+      <VAR_DECL>
+        <TYPE type="int"/>
+        <VarInitOP>
+          <IDENTIFIER value="f1"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="1"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <VAR_DECL>
+        <TYPE type="int"/>
+        <VarInitOP>
+          <IDENTIFIER value="f0"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="0"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <VAR_DECL>
+        <TYPE type="int"/>
+        <VarInitOP>
+          <IDENTIFIER value="fn"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <IDENTIFIER value="n"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <VAR_DECL>
+        <TYPE type="int"/>
+        <VarInitOP>
+          <IDENTIFIER value="i"/>
+          <VAR_INIT_VALUE>
+            <ASSIGN_OP>
+              <INT_CONST value="2"/>
+            </ASSIGN_OP>
+          </VAR_INIT_VALUE>
+        </VarInitOP>
+      </VAR_DECL>
+      <WHILE_OP>
+        <LEOp type="bool">
+          <IDENTIFIER value="i"/>
+          <IDENTIFIER value="n"/>
+        </LEOp>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="fn"/>
+            <AddOP type="int">
+              <IDENTIFIER value="f1"/>
+              <IDENTIFIER value="f0"/>
+            </AddOP>
+          </ASSIGN_OP>
+          <ASSIGN_OP>
+            <IDENTIFIER value="f0"/>
+            <IDENTIFIER value="f1"/>
+          </ASSIGN_OP>
+          <ASSIGN_OP>
+            <IDENTIFIER value="f1"/>
+            <IDENTIFIER value="fn"/>
+          </ASSIGN_OP>
+          <ASSIGN_OP>
+            <IDENTIFIER value="i"/>
+            <AddOP type="int">
+              <IDENTIFIER value="i"/>
+              <INT_CONST value="1"/>
+            </AddOP>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </WHILE_OP>
+      <ASSIGN_OP>
+        <IDENTIFIER value="ris"/>
+        <IDENTIFIER value="fn"/>
+      </ASSIGN_OP>
+    </Body>
+  </DEF_DECL>
+  <ASSIGN_OP>
+    <IDENTIFIER value="sommagrande"/>
+    <INT_CONST value="0"/>
+  </ASSIGN_OP>
+  <ASSIGN_OP>
+    <IDENTIFIER value="sommapiccola"/>
+    <INT_CONST value="0"/>
+  </ASSIGN_OP>
+  <WriteOP>
+    <STRING_CONST value="Questo programma CALCOLATRICE permette di svolgere una serie di addizioni (1), sottrazioni (2), moltiplicazioni (3), divisioni (4), elevamento a potenza (5), successione di fibonacci (6) "/>
+  </WriteOP>
+  <WriteOP>
+    <STRING_CONST value="Accumulando i risultati &gt; 100 in sommagrande e quelli &lt; 100 in sommapiccola "/>
+  </WriteOP>
+  <ASSIGN_OP>
+    <IDENTIFIER value="continua"/>
+    <FALSE_OP type="bool"/>
+  </ASSIGN_OP>
+  <WHILE_OP>
+    <NOT_OP type="bool">
+      <IDENTIFIER value="continua"/>
+    </NOT_OP>
+    <COMP_STAT>
+      <WriteOP>
+        <STRING_CONST value="Scegli una delle 6 operazioni (1), (2), (3), (4), (5), (6) "/>
+      </WriteOP>
+      <READ_OP>
+        <IDENTIFIER value="scelta"/>
+      </READ_OP>
+      <IF_THEN_ELSE_OP>
+        <OROp type="bool">
+          <OROp type="bool">
+            <OROp type="bool">
+              <OROp type="bool">
+                <OROp type="bool">
+                  <EQOp type="bool">
+                    <IDENTIFIER value="scelta"/>
+                    <INT_CONST value="1"/>
+                  </EQOp>
+                  <EQOp type="bool">
+                    <IDENTIFIER value="scelta"/>
+                    <INT_CONST value="2"/>
+                  </EQOp>
+                </OROp>
+                <EQOp type="bool">
+                  <IDENTIFIER value="scelta"/>
+                  <INT_CONST value="3"/>
+                </EQOp>
+              </OROp>
+              <EQOp type="bool">
+                <IDENTIFIER value="scelta"/>
+                <INT_CONST value="4"/>
+              </EQOp>
+            </OROp>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="5"/>
+            </EQOp>
+          </OROp>
+          <EQOp type="bool">
+            <IDENTIFIER value="scelta"/>
+            <INT_CONST value="6"/>
+          </EQOp>
+        </OROp>
+        <COMP_STAT>
+          <IF_THEN_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="1"/>
+            </EQOp>
+            <COMP_STAT>
+              <WriteOP>
+                <STRING_CONST value="Addizione : inserisci due numeri positivi "/>
+              </WriteOP>
+              <READ_OP>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </READ_OP>
+              <CALL_OP>
+                <IDENTIFIER value="somma"/>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+                <IDENTIFIER value="risultato"/>
+                <IDENTIFIER value="grande"/>
+              </CALL_OP>
+              <WriteOP>
+                <STRING_CONST value="Risultato somma: "/>
+                <IDENTIFIER value="risultato"/>
+              </WriteOP>
+            </COMP_STAT>
+          </IF_THEN_OP>
+          <IF_THEN_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="2"/>
+            </EQOp>
+            <COMP_STAT>
+              <WriteOP>
+                <STRING_CONST value="Sottrazione : inserisci due numeri positivi "/>
+              </WriteOP>
+              <READ_OP>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </READ_OP>
+              <CALL_OP>
+                <IDENTIFIER value="sottrazione"/>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+                <IDENTIFIER value="risultato"/>
+                <IDENTIFIER value="grande"/>
+              </CALL_OP>
+              <WriteOP>
+                <STRING_CONST value="Risultato sottrazione: "/>
+                <IDENTIFIER value="risultato"/>
+              </WriteOP>
+            </COMP_STAT>
+          </IF_THEN_OP>
+          <IF_THEN_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="3"/>
+            </EQOp>
+            <COMP_STAT>
+              <WriteOP>
+                <STRING_CONST value="Moltiplicazione : inserisci due numeri positivi "/>
+              </WriteOP>
+              <READ_OP>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </READ_OP>
+              <CALL_OP>
+                <IDENTIFIER value="moltiplicazione"/>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+                <IDENTIFIER value="risultato"/>
+                <IDENTIFIER value="grande"/>
+              </CALL_OP>
+              <WriteOP>
+                <STRING_CONST value="Risultato moltiplicazione: "/>
+                <IDENTIFIER value="risultato"/>
+              </WriteOP>
+            </COMP_STAT>
+          </IF_THEN_OP>
+          <IF_THEN_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="4"/>
+            </EQOp>
+            <COMP_STAT>
+              <WriteOP>
+                <STRING_CONST value="Divisione : inserisci due numeri positivi "/>
+              </WriteOP>
+              <READ_OP>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </READ_OP>
+              <CALL_OP>
+                <IDENTIFIER value="divisione"/>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+                <IDENTIFIER value="risultato"/>
+                <IDENTIFIER value="grande"/>
+              </CALL_OP>
+              <WriteOP>
+                <STRING_CONST value="Risultato divisione: "/>
+                <IDENTIFIER value="risultato"/>
+              </WriteOP>
+            </COMP_STAT>
+          </IF_THEN_OP>
+          <IF_THEN_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="5"/>
+            </EQOp>
+            <COMP_STAT>
+              <WriteOP>
+                <STRING_CONST value="Elevamento a potenza : inserisci due numeri positivi "/>
+              </WriteOP>
+              <READ_OP>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+              </READ_OP>
+              <CALL_OP>
+                <IDENTIFIER value="potenza"/>
+                <IDENTIFIER value="x"/>
+                <IDENTIFIER value="y"/>
+                <IDENTIFIER value="risultato"/>
+              </CALL_OP>
+              <WriteOP>
+                <STRING_CONST value="Risultato potenza : "/>
+                <IDENTIFIER value="risultato"/>
+              </WriteOP>
+            </COMP_STAT>
+          </IF_THEN_OP>
+          <IF_THEN_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta"/>
+              <INT_CONST value="6"/>
+            </EQOp>
+            <COMP_STAT>
+              <WriteOP>
+                <STRING_CONST value="Successione di Fibonacci: inserisci un numero "/>
+              </WriteOP>
+              <READ_OP>
+                <IDENTIFIER value="x"/>
+              </READ_OP>
+              <ASSIGN_OP>
+                <IDENTIFIER value="i"/>
+                <INT_CONST value="0"/>
+              </ASSIGN_OP>
+              <WHILE_OP>
+                <LEOp type="bool">
+                  <IDENTIFIER value="i"/>
+                  <IDENTIFIER value="x"/>
+                </LEOp>
+                <COMP_STAT>
+                  <CALL_OP>
+                    <IDENTIFIER value="fibonacci"/>
+                    <IDENTIFIER value="i"/>
+                    <IDENTIFIER value="risFibonacci"/>
+                  </CALL_OP>
+                  <WriteOP>
+                    <STRING_CONST value="Risultato successione di Fibonacci : "/>
+                    <IDENTIFIER value="risFibonacci"/>
+                  </WriteOP>
+                  <ASSIGN_OP>
+                    <IDENTIFIER value="i"/>
+                    <AddOP type="int">
+                      <IDENTIFIER value="i"/>
+                      <INT_CONST value="1"/>
+                    </AddOP>
+                  </ASSIGN_OP>
+                </COMP_STAT>
+              </WHILE_OP>
+            </COMP_STAT>
+          </IF_THEN_OP>
+        </COMP_STAT>
+        <COMP_STAT>
+          <ASSIGN_OP>
+            <IDENTIFIER value="continua"/>
+            <TRUE_OP type="bool"/>
+          </ASSIGN_OP>
+        </COMP_STAT>
+      </IF_THEN_ELSE_OP>
+      <IF_THEN_OP>
+        <NOT_OP type="bool">
+          <IDENTIFIER value="continua"/>
+        </NOT_OP>
+        <COMP_STAT>
+          <IF_THEN_ELSE_OP>
+            <IDENTIFIER value="grande"/>
+            <COMP_STAT>
+              <ASSIGN_OP>
+                <IDENTIFIER value="sommagrande"/>
+                <AddOP type="double">
+                  <IDENTIFIER value="sommagrande"/>
+                  <IDENTIFIER value="risultato"/>
+                </AddOP>
+              </ASSIGN_OP>
+            </COMP_STAT>
+            <COMP_STAT>
+              <ASSIGN_OP>
+                <IDENTIFIER value="sommapiccola"/>
+                <AddOP type="double">
+                  <IDENTIFIER value="sommapiccola"/>
+                  <IDENTIFIER value="risultato"/>
+                </AddOP>
+              </ASSIGN_OP>
+            </COMP_STAT>
+          </IF_THEN_ELSE_OP>
+          <WriteOP>
+            <STRING_CONST value="Vuoi continuare? si --&gt; (0) no --&gt; (1) "/>
+          </WriteOP>
+          <READ_OP>
+            <IDENTIFIER value="scelta_cont"/>
+          </READ_OP>
+          <IF_THEN_ELSE_OP>
+            <EQOp type="bool">
+              <IDENTIFIER value="scelta_cont"/>
+              <INT_CONST value="1"/>
+            </EQOp>
+            <COMP_STAT>
+              <ASSIGN_OP>
+                <IDENTIFIER value="continua"/>
+                <TRUE_OP type="bool"/>
+              </ASSIGN_OP>
+            </COMP_STAT>
+            <COMP_STAT>
+              <IF_THEN_ELSE_OP>
+                <EQOp type="bool">
+                  <IDENTIFIER value="scelta_cont"/>
+                  <INT_CONST value="0"/>
+                </EQOp>
+                <COMP_STAT>
+                  <ASSIGN_OP>
+                    <IDENTIFIER value="continua"/>
+                    <FALSE_OP type="bool"/>
+                  </ASSIGN_OP>
+                  <ASSIGN_OP>
+                    <IDENTIFIER value="scelta"/>
+                    <INT_CONST value="0"/>
+                  </ASSIGN_OP>
+                </COMP_STAT>
+                <COMP_STAT>
+                  <ASSIGN_OP>
+                    <IDENTIFIER value="continua"/>
+                    <TRUE_OP type="bool"/>
+                  </ASSIGN_OP>
+                </COMP_STAT>
+              </IF_THEN_ELSE_OP>
+            </COMP_STAT>
+          </IF_THEN_ELSE_OP>
+        </COMP_STAT>
+      </IF_THEN_OP>
+    </COMP_STAT>
+  </WHILE_OP>
+  <WriteOP>
+    <STRING_CONST value="Valore di sommagrande: "/>
+    <IDENTIFIER value="sommagrande"/>
+    <STRING_CONST value=" "/>
+  </WriteOP>
+  <WriteOP>
+    <STRING_CONST value="Valore di sommapiccola: "/>
+    <IDENTIFIER value="sommapiccola"/>
+    <STRING_CONST value=" "/>
+  </WriteOP>
+  <WriteOP>
+    <STRING_CONST value="ciao"/>
+    <STRING_CONST value="alla prossima"/>
+  </WriteOP>
+  <WriteOP>
+    <CHAR_CONST value="!"/>
+    <STRING_CONST value="&#10; "/>
+  </WriteOP>
+</ProgramOP>

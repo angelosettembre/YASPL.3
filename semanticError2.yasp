@@ -1,0 +1,8 @@
+head
+
+int x=1,y;
+
+start
+if(x>1 and y)then{			//CONDIZIONE IF
+    x = 2+1/1;
+}

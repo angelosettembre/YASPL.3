@@ -1,0 +1,95 @@
+head
+double c = 2.3;
+double w = c;
+int x = 1;
+int sumTot;
+int ris;
+double multTot;
+bool rel;
+bool boolOP;
+string g = "ciao";
+string s = g;
+string ut;
+char charC = 'c';
+int valore = 1;
+double val = 0.3;
+string prova2;
+
+def somma(in string z,in bool y,out double risultato){
+	int p = sumTot;
+	bool check;
+	double j;
+	string f;
+	string n = "prova";
+	int x = 10;
+	p = 1;
+	f = g;
+	j = x;
+	p = 1+2+x;
+	
+	if (p>0 and check) then {
+		x=1;
+		rel = true;
+	}
+	p = -sumTot;
+	check = not rel;
+	
+	x,g->;
+}
+
+def prodotto(in double j,out double m,out double risultato){
+	double k = m;
+	int sumTot = 10;
+	bool valBool = false;
+	k = 0;
+	k = k*sumTot;
+	if(not valBool) then {
+		
+	}
+}
+
+def divisione(in string qwe,out string asd){
+	string str = "zdew";
+}
+
+start
+
+rel = x>1;
+sumTot = x+1;
+multTot = sumTot + 2 * 3;
+x+1->;
+
+x<2 and x>1 ->;
+rel = x==1 or w>=1;
+
+if (x>=54.3 and rel) then {
+	x=1;
+	rel = true;
+} else {
+	if(x==sumTot) then {
+		x=0;
+	}
+}
+
+rel = not boolOP;
+
+if(not (x>2) and rel) then {
+	x->;
+}
+
+c = -3.1+x;
+multTot = x+13+3*3.4;
+
+while(x>2) do {
+	x=1;
+}
+
+c,rel<-;
+
+x,g->;
+
+somma(g, rel and x>2, w);
+prodotto(c,multTot,w);
+divisione(g,g);
+if(charC == charC) then {
+}

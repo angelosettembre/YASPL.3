@@ -1,0 +1,8 @@
+head
+int b;
+string s;
+string result;
+start
+b = 32;
+s = "prova";
+b = s;				//ASSEGNAZIONE ERRATA

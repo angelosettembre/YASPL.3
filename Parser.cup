@@ -1,0 +1,191 @@
+import nodes.*;
+import java.util.*;
+import visitors.syntax.SyntaxVisitor;
+import visitors.semantic.SemanticVisitor;
+import visitors.code_generation.CodeGenerationVisitor;
+import org.w3c.dom.*;
+import java.io.*;
+import java_cup.runtime.*; 
+
+parser code {:
+    private Lexer lexer;
+    private File file;
+    private Symbol symbol;
+    
+    public ParserCup( File file ) {
+        this();
+        this.file = file;
+        try {
+            lexer = new Lexer( new FileReader( file ) );
+        }
+        catch ( IOException exception ) {
+        	throw new Error( "Unable to open file \"" + file + "\"" );
+        }
+    }
+
+    public void report_error(String message, Object info) {
+        StringBuilder m = new StringBuilder("Error");
+
+        m.append(" : "+message+" "+"row "+symbol.left+":"+" column "+symbol.right);
+   
+        System.err.println(m);
+      }
+
+:};
+
+scan with {:
+	symbol = lexer.next_token();
+  	return symbol;
+:};
+
+/* Terminals (tokens returned by the scanner). */
+terminal String HEAD, START, SEMI;
+terminal String INT;
+terminal String BOOL;
+terminal String DOUBLE;
+terminal String STRING;
+terminal String CHAR;
+terminal String ID, COMMA, DEF, LPAR, RPAR, LGPAR, RGPAR, READ, 
+		 WRITE, PLUS, MINUS, TIMES, DIV, ASSIGN, IF, THEN, WHILE, DO, ELSE, GT, GE, LT, LE, EQ, NOT, AND, OR, UMINUS, IN, OUT, INOUT;
+terminal Integer INT_CONST; 
+terminal Double DOUBLE_CONST; 
+terminal String STRING_CONST;
+terminal Character CHAR_CONST; 
+terminal Boolean TRUE, FALSE; 
+
+/* Non-terminals */
+nonterminal Program Programma; 
+nonterminal ArrayList<Decl> Decls; 
+nonterminal ArrayList<Statement> Statements; 
+nonterminal VarDeclaration Var_decl;
+nonterminal Type Type; 
+nonterminal ArrayList<VarDeclarationInit> Var_decls_init; 
+nonterminal VarInitValue Var_init_value; 
+nonterminal ArrayList<Identifier> Vars; 
+nonterminal FunctionDeclaration Def_decl; 
+nonterminal ArrayList<VarDeclaration> Var_decls; 
+nonterminal ArrayList<ParameterDeclaration> Par_decls; 
+nonterminal ParameterType Par_type; 
+nonterminal Body Body; 
+nonterminal Statement Stat; 
+nonterminal CompStatement Comp_stat; 
+nonterminal ArrayList<Expression> Args; 
+nonterminal Expression Expr; 
+
+/* Precedences */
+precedence right COMMA;
+precedence left AND, OR;
+precedence right NOT;
+precedence left GT, GE, LT, LE, EQ;
+precedence left PLUS, MINUS; 
+precedence left TIMES, DIV;
+precedence left UMINUS;
+
+/* The grammar rules */
+Programma ::= HEAD Decls:decls START Statements:stmts {: System.out.println("\tPROGRAM COMPLETE"); RESULT = new Program(decls,stmts); 
+														SyntaxVisitor sv = new SyntaxVisitor();
+														sv.appendRoot((Element)sv.visit(RESULT));
+                                                        sv.toXml();
+
+														SemanticVisitor sm = new SemanticVisitor();
+														sm.appendRoot((Element)sm.visit(RESULT));
+                                                        sm.toXml();	
+
+														CodeGenerationVisitor cg = new CodeGenerationVisitor(sm.getStackOfTable(), sm.getListSymTable());
+														PrintWriter out = new PrintWriter("yaspl.c");
+                                                        out.println(cg.visit(RESULT));
+                                                        out.close();
+														:}
+		; 
+
+Decls ::= Var_decl:var_decl Decls:decls	{: decls.add(var_decl); System.out.println("\tDECLSS 1 COMPLETATO"+decls); RESULT = decls; :}
+		|Def_decl:def_decl Decls:decls	{: decls.add(def_decl); System.out.println("\tDECLSS 2 COMPLETATO"+decls); RESULT = decls; :}
+		| /* empty */	{: RESULT = new ArrayList<Decl>(); :}
+		;
+
+Statements ::=Stat:stat Statements:stmts	{: System.out.println("\tSTATEMENTS COMPLETE"); stmts.add(stat); RESULT = stmts; :}
+		| /* empty */	{: RESULT = new ArrayList<Statement>(); :}
+		;
+		
+Var_decl ::= Type:type Var_decls_init:var_decls_init SEMI	{: System.out.println("\tVAR_DECLLL COMPLETATO"); RESULT = new VarDeclaration(type,var_decls_init); :}
+		;
+
+Type ::= INT	{: System.out.println("\tType = int"); RESULT = new Type("int"); :}
+		|BOOL	{: RESULT = new Type("bool"); :}
+		|DOUBLE	{: RESULT = new Type("double"); :}
+		|STRING	{: RESULT = new Type("string"); :}
+		|CHAR	{: RESULT = new Type("char"); :}
+		;
+		
+Var_decls_init ::= ID:id Var_init_value:var_init_value COMMA Var_decls_init:var_decls_init	{: System.out.println("\tVar_decls_init 1 COMPLETE"); var_decls_init.add(new VarDeclarationInit(new Identifier(id), var_init_value)); RESULT = var_decls_init; :} /*DA RIVEDERE*/
+		| ID:id Var_init_value:var_init_value	{: System.out.println("\tVar_decls_init 2 COMPLETE"); RESULT = new ArrayList<>(); RESULT.add(new VarDeclarationInit(new Identifier(id), var_init_value)); :}
+		;
+		
+Var_init_value ::= ASSIGN Expr:expr	{: System.out.println("\tVar_init_value COMPLETE"); RESULT = new VarInitValue(new AssignOP(expr)); :}		/*DA RIVEDERE*/
+		| /* empty */				{: RESULT = null; :}
+		;
+		
+Def_decl ::= DEF ID:id LPAR Par_decls:par_decls RPAR Body:body	{: RESULT = new FunctionDeclaration(new Identifier(id), par_decls, body); :}
+		| DEF ID:id LPAR RPAR Body:body	{: RESULT = new FunctionDeclaration(new Identifier(id), body); :}
+		;
+
+Var_decls ::= Var_decl:var_decl Var_decls:var_decls	{: var_decls.add(var_decl); RESULT = var_decls; :}
+		| /* empty */	{: RESULT = new ArrayList<VarDeclaration>(); :}
+		;
+		
+Par_decls ::= Par_type:par_type Type:type ID:id COMMA Par_decls:par_decls	{: par_decls.add(new ParameterDeclaration(par_type, type, new Identifier(id))); RESULT = par_decls; :}		/*DA RIVEDERE*/
+		| Par_type:par_type Type:type ID:id {: RESULT = new ArrayList<>(); RESULT.add(new ParameterDeclaration(par_type, type, new Identifier(id))); :}	
+		;
+		
+Par_type ::= IN	{: RESULT = new ParameterType("in"); :}		/*DA RIVEDERE*/
+		|OUT	{: RESULT = new ParameterType("out"); :}
+		|INOUT	{: RESULT = new ParameterType("inout"); :}
+		;
+		
+Body ::= LGPAR Var_decls:var_decls Statements:stmts RGPAR	{: RESULT = new Body(var_decls, stmts); :}
+		;
+		
+Stat ::= Vars:vars READ SEMI	{: System.out.println("\tStat::= ReadOP"); RESULT = new ReadOP(vars); :}
+		|Args:args WRITE SEMI	{: System.out.println("\tStat::= WriteOP"); RESULT = new WriteOP(args); :}
+		|ID:id ASSIGN Expr:expr SEMI	{: RESULT = new AssignOP(new Identifier(id), expr); :}
+		|ID:id LPAR Args:args RPAR SEMI	{: RESULT = new CallOP(new Identifier(id), args); :}
+		|ID:id LPAR RPAR SEMI				{: RESULT = new CallOP(new Identifier(id)); :}
+		|IF LPAR Expr:expr RPAR THEN Comp_stat:comp_stat ELSE Comp_stat:comp_stat_else	{: RESULT = new IfThenElseOP(expr, comp_stat, comp_stat_else); :}
+		|IF LPAR Expr:expr RPAR THEN Comp_stat:comp_stat	{: RESULT = new IfThenOP(expr, comp_stat); :}
+		|WHILE LPAR Expr:expr RPAR DO Comp_stat:comp_stat	{: RESULT = new WhileOP(expr, comp_stat); :}
+		;
+		
+Vars ::= ID:id COMMA Vars:vars	{: vars.add(new Identifier(id)); RESULT = vars; :}
+		|ID:id					{: RESULT = new ArrayList<>(); RESULT.add(new Identifier(id)); :}
+		;
+
+Args ::= Expr:expr COMMA Args:args	{: System.out.println("\tArgs 1 "); args.add(expr); RESULT = args; :}
+		|ID:id COMMA Args:args 		{: System.out.println("\tArgs ID "); args.add(new Identifier(id)); RESULT = args; :}			/*MODIFICA GRAMMATICA = aggiunta produzione per la write*/
+		|Expr:expr					{: System.out.println("\tArgs 2 "); RESULT = new ArrayList<>(); RESULT.add(expr); :}
+		;
+		
+Comp_stat ::= LGPAR Statements:stmts RGPAR	{: RESULT = new CompStatement(stmts); :}
+		;
+		
+Expr ::= Expr:expr1 PLUS Expr:expr2	{: RESULT = new ArithOP(expr1, expr2, "AddOP"); :}
+		|Expr:expr1 MINUS Expr:expr2 {: RESULT = new ArithOP(expr1, expr2, "DiffOP"); :}
+		|Expr:expr1 TIMES Expr:expr2 {: RESULT = new ArithOP(expr1, expr2, "MulOP"); :}
+		|Expr:expr1 DIV Expr:expr2 {: RESULT = new ArithOP(expr1, expr2, "DivOP"); :}	
+		|Expr:expr1 AND Expr:expr2		{: RESULT = new BoolOP(expr1, expr2, "ANDOp"); :}
+		|Expr:expr1 OR Expr:expr2 {: RESULT = new BoolOP(expr1, expr2, "OROp"); :}
+		|Expr:expr1 GT Expr:expr2		{: RESULT = new RelOP(expr1, expr2, "GTOp"); :}
+		|Expr:expr1 GE Expr:expr2 {: RESULT = new RelOP(expr1, expr2, "GEOp"); :}
+		|Expr:expr1 LT Expr:expr2 {: RESULT = new RelOP(expr1, expr2, "LTOp"); :}
+		|Expr:expr1 LE Expr:expr2 {: RESULT = new RelOP(expr1, expr2, "LEOp"); :}
+		|Expr:expr1 EQ Expr:expr2 {: RESULT = new RelOP(expr1, expr2, "EQOp"); :}
+		|MINUS Expr:expr {: RESULT = new UminusOP(expr); :} %prec UMINUS				
+		|NOT Expr:expr								{: RESULT = new NotOP(expr); :}
+		|LPAR Expr:expr RPAR						{: RESULT = expr; :}
+		|TRUE										{: RESULT = new TrueOP(); :}
+		|FALSE										{: RESULT = new FalseOP(); :}
+		|ID:id										{: System.out.println("\tID"); RESULT = new Identifier(id); :}							
+		|INT_CONST:ic								{: System.out.println("\tExpr ::= INT_CONST"); RESULT = new IntConst(ic); :}	
+		|DOUBLE_CONST:dc							{: RESULT = new DoubleConst(dc); :}
+		|CHAR_CONST:cc								{: RESULT = new CharConst(cc); :}
+		|STRING_CONST:sc							{: RESULT = new StringConst(sc); :}
+		;

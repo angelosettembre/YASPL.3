@@ -1,0 +1,17 @@
+head
+
+int x,y;
+int risultato;
+string v;
+double b;
+
+def somma(in int x, in int y, out int ris){
+	ris = x + y;
+}
+
+start
+somma(x,y,risultato);
+
+if(not x > 4 or v>b) then {				//CONDIZIONE IF (stringa>double)
+	"hello"->;
+}

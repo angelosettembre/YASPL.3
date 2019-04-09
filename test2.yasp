@@ -1,0 +1,70 @@
+head
+double c = 2.3;
+double w;
+double x = 1;
+double y;
+int sumTot;
+int ris;
+double multTot;
+bool rel;
+bool boolOP;
+string ut;
+char charC = 'c';
+int valore = 1;
+double val = 0.3;
+string prova2;
+double risultato;
+bool grande;
+
+def sottrazione(in double x, in double y, out double res, out bool grande, inout double w)
+{
+	double risultato = x-y;
+	if ((x-y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+	//res = risultato + res;
+	//res,x,y<-;
+	//x,res,y->;
+	if(x == 0 and x>4) then {
+		res = risultato;
+	} else {
+		res = risultato+1;
+	}
+	grande = x>2 and rel;
+	
+	while(x>0) do {
+		if(x == 0 and x>4) then {
+			res = risultato;
+		} else {
+			//res<-;
+		}
+		res = risultato;	
+	}
+	grande = not x>2 and risultato<53 or x>2;
+	sottrazione(x,y,res,grande,multTot);
+	x = x+1+w;
+	x = w+22+w+x;
+}
+
+start
+
+if(x+1 > 2) then {
+	"test"->;
+}
+if(not(-x+1)>5 and x>1) then {
+	"test"->;
+}
+-x*1->;
+-1.5+1+1.1,"valoree"->;
+-x+1+3/5-2,-1.5+1->;
+sottrazione(1+1+x+2+x,y, risultato, grande,x);
+grande = x>2 and x==4;
+if(grande) then {
+	
+}
+x,sumTot<-;
+sottrazione(x,y,risultato,grande,x);

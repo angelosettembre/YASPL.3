@@ -1,0 +1,71 @@
+head
+
+double sommagrande, sommapiccola;
+int i;
+int val = 0;
+int h,j,p;
+double x, y, risultato;
+bool grande;
+
+def moltiplicazione(in double x, in double y, out double res, out bool grande)
+{
+	double risultato = x*y;
+	risultato = 1;
+	if ((x*y) >= 100) then {
+		grande = true;
+	}
+	else{ 
+		grande = false;
+	}
+	res = risultato;
+}
+
+def somma(in int x, in int y, in int we, out int ras){
+	x = x+1;
+	if(y > x) then {
+		ras = y+x;
+	} else {
+		ras = y-x;
+	}
+}
+
+
+start 
+
+sommagrande = 0;
+sommapiccola = 0;
+
+"Questo programma permette di svolgere una serie di moltiplicazioni" ->;
+"accumulando i risultati < 100 in sommagrande e quelli < 100 in sommapiccola" ->; 
+
+i = -1;
+while (i <= 0) do{
+	"Quante moltiplicazioni vuoi svolgere? (inserire intero > 0)"->;
+	i <-;
+}
+
+while (i > 0) do{
+	
+	x = x+13*43/y;
+	x = -1; 
+	y = -1;
+
+	while (not(x > 0 and y >0)) do
+	{
+		"Moltiplicazione ", i, ": inserisci due numeri positivi" ->;
+		x, y <-;
+	}
+	
+	moltiplicazione(x, y , risultato, grande);
+	somma(h,j,val,i);
+
+	if(grande) then{ 
+		sommagrande = sommagrande + risultato;
+	}else{
+		sommapiccola = sommapiccola + risultato;
+	}
+	i = i-1;
+}
+
+"Valore di sommagrande: " , sommagrande ->;
+"Valore di sommapiccola: ", sommapiccola ->;
